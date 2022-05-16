@@ -1,0 +1,16 @@
+<h1>Edit <%= @item.name %></h1>
+
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+        <p><%= error %></p>
+    <% end %>
+<% end %>
+
+<%= form_for @item do |item| %>
+    <%= item.label :name %>
+    <%= item.text_field :name %>
+    <%= item.label :description %>
+    <%= item.text_field :description %>
+
+    <%= item.submit %>
+<% end %>

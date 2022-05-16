@@ -1,0 +1,15 @@
+<h1>Warehouse: <%= @warehouse.name %></h1>
+<p>Description: <%= @warehouse.location %></p>
+
+<h2>Warehouse Items:</h2>
+
+<ul>
+    <% @warehouse.inventories.each do |inventories| %>
+        <li><%= @warehouse.item.name %>, <%= @warehouse.item.description %></li>
+    <% end %>
+</ul>
+
+<!--<%= button_to "Add item", new_inventory_path, method: :get %> -->
+
+<%= button_to "Edit Warehouse", edit_warehouse_path, method: :get %>
+<%= button_to "Delete Warehouse", warehouse_path, method: :delete %>

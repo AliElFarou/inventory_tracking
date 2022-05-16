@@ -1,0 +1,9 @@
+<h1>Warehouses</h1>
+
+<%= button_to "Add Warehouse", new_warehouse_path, method: :get %>
+
+<ul>
+    <% @warehouses.each do |warehouse| %>
+        <li><%= link_to warehouse.name, warehouse_path(warehouse)%>, <%= warehouse.location %></li>
+    <% end %>
+</ul>
