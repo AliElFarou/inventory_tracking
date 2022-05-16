@@ -1,15 +1,29 @@
 <h1>Item: <%= @item.name %></h1>
 <p>Description: <%= @item.description %></p>
 
-<h2>Warehouse Locations:</h2>
-
-<ul>
-    <% @item.inventories.each do |inventories| %>
-        <li><%= @item.warehouse.name %>, <%= @item.warehouse.location %></li>
-    <% end %>
-</ul>
-
-<%= button_to "Add warehouse", new_inventory_path, method: :get %>
-
 <%= button_to "Edit Item", edit_item_path, method: :get %>
 <%= button_to "Delete Item", item_path, method: :delete %>
+
+<h2>Warehouse Locations:</h2>
+
+<% if @item.warehouse_items.count == 0 %>
+    <p>There are no warehouses linked to this item</p>
+<% else %>
+    <ul>
+        <% @item.warehouse_items.each do |inventories| %>
+            <li><%= @item.warehouse.name %>, <%= @item.warehouse.location %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<h2>Add Warehouse location </h2>
+
+<div class="field" >
+    <%= form_with model: @warehouse_item do |f| %>
+        <%= f.label "Warehouse" %>
+        <%= f.collection_select(:warehouse_id, Warehouse.all, :id, :name, :prompt => "select a warehouse")  %>
+
+    <% end %>
+</div>
+
+

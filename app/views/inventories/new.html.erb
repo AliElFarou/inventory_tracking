@@ -9,7 +9,7 @@
 <div class="field" >
 <%= form_with model: @inventory do |f| %>
     <%= f.label "Warehouse" %>
-    <%= f.collection_select :warehouse_id, Warehouse.all, :id, :name, :location, :prompt => "select a warehouse"  %>
+    <%= f.collection_select(@warehouse, :warehouse_id, Warehouse.all, :id, :name, :prompt => "select a warehouse")  %>
 
     <% end %>
 </div>

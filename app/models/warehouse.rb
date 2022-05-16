@@ -1,8 +1,8 @@
 class Warehouse < ApplicationRecord
-    has_many :inventories
-    has_many :items, through: :inventories
+    has_many :warehouse_items
+    has_many :items, through: :warehouse_items
 
     validates :name, presence:  true
     validates :location, presence: true
-    validates :name, uniqueness: { scope: :location}
+    validates :location, uniqueness: true
 end
