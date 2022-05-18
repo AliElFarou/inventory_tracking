@@ -1,8 +1,14 @@
-require "test_helper"
+require "./test/test_helper"
 
-class ItemsControllerTest < ActionDispatch::IntegrationTest
+class ItemsControllerTest < ActionController::TestCase
+
+  def setup
+    @item = Item.create(name: "Hammer", description: "hammer things")
+  end
+
+
   test "should get index" do
-    get items_index_url
+    get :index
     assert_response :success
   end
 
@@ -17,7 +23,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show" do
-    get items_show_url
+    get item_path(@item.id)
     assert_response :success
   end
 
