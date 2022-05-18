@@ -1,24 +1,18 @@
 require "./test/test_helper"
 
-class ItemsControllerTest < ActionController::TestCase
+class ItemsControllerTest < ActionDispatch::IntegrationTest
 
   def setup
-    @item = Item.create(name: "Hammer", description: "hammer things")
+    @item = Item.create(name: "Saw", description: "cut things")
   end
 
-
   test "should get index" do
-    get :index
+    get items_path
     assert_response :success
   end
 
   test "should get new" do
-    get items_new_url
-    assert_response :success
-  end
-
-  test "should get create" do
-    get items_create_url
+    get new_item_path
     assert_response :success
   end
 
@@ -28,17 +22,8 @@ class ItemsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get items_edit_url
+    get edit_item_path(@item.id)
     assert_response :success
   end
 
-  test "should get update" do
-    get items_update_url
-    assert_response :success
-  end
-
-  test "should get destroy" do
-    get items_destroy_url
-    assert_response :success
-  end
 end
