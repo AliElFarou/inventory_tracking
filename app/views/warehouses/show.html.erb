@@ -1,14 +1,33 @@
+<br>
 <h1>Warehouse: <%= @warehouse.name %></h1>
-<p>Description: <%= @warehouse.location %></p>
+<p>Location: <%= @warehouse.location %></p>
 
+<br>
 <h2>Warehouse Items:</h2>
-
-<ul>
-    <% @warehouse.warehouse_items.each do |f| %>
-        <li><%= @warehouse.item.name %>, <%= @warehouse.item.description %></li>
-    <% end %>
-</ul>
-
-
-<%= button_to "Edit Warehouse", edit_warehouse_path, method: :get %>
-<%= button_to "Delete Warehouse", warehouse_path, method: :delete %>
+<br>
+<% if @warehouse.items.count == 0 %>
+    <p>There are no items in this warehouse</p>
+<% else %>
+    <div class="table-responsive-sm">
+        <table class="table table-bordered table-sm" style="width:75%">
+        <thead>
+            <th>Name</th>
+            <th>Description</th>
+        </thead>
+        <tbody>
+        <% @warehouse.items.each do |f| %>
+        <tr>
+            <td><%= f.name %></td>  
+            <td><%= f.description %></td>
+        <tr>
+        <% end %>
+        </tbody>
+        </table>
+    </div>
+<% end %>
+<br>
+<div style="display: flex;">
+    <%= button_to "Edit Warehouse", edit_warehouse_path, class:"btn btn-primary",  method: :get %>&nbsp
+    <%= button_to "Delete Warehouse", warehouse_path, class:"btn btn-primary",  method: :delete %>&nbsp
+    <%= button_to "Return to Warehouses", warehouses_path, class:"btn btn-primary",  method: :get %>
+</div>

@@ -1,29 +1,33 @@
+<br>
 <h1>Item: <%= @item.name %></h1>
-<p>Description: <%= @item.description %></p>
+<p>Description: <%= @item.description %></p><br>
 
-<%= button_to "Edit Item", edit_item_path, method: :get %>
-<%= button_to "Delete Item", item_path, method: :delete %>
-
-<h2>Warehouse Locations:</h2>
-
-<% if @item.warehouse_items.count == 0 %>
+<h2>Warehouse Locations</h2>
+<br>
+<% if @item.warehouses.count == 0 %>
     <p>There are no warehouses linked to this item</p>
 <% else %>
-    <ul>
-        <% @item.warehouse_items.each do |inventories| %>
-            <li><%= @item.warehouse.name %>, <%= @item.warehouse.location %></li>
+    <div class="table-responsive-sm">
+        <table class="table table-bordered table-sm" style="width:75%">
+        <thead>
+            <th>Name</th>
+            <th>Location</th>
+        </thead>
+        <tbody>
+        <% @item.warehouses.each do |f| %>
+        <tr>
+            <td><%= f.name %></td>  
+            <td><%= f.location %></td>
+        <tr>
         <% end %>
-    </ul>
+        </tbody>
+        </table>
+        </div>
+    
 <% end %>
-
-<h2>Add Warehouse location </h2>
-
-<div class="field" >
-    <%= form_with model: @warehouse_item do |f| %>
-        <%= f.label "Warehouse" %>
-        <%= f.collection_select(:warehouse_id, Warehouse.all, :id, :name, :prompt => "select a warehouse")  %>
-
-    <% end %>
+<br>
+<div style="display: flex;">
+    <%= button_to "Edit Item", edit_item_path, class:"btn btn-primary", method: :get %>&nbsp
+    <%= button_to "Delete Item", item_path, class:"btn btn-primary", method: :delete %>&nbsp
+    <%= button_to "Return to Items", items_path, class:"btn btn-primary",  method: :get %>
 </div>
-
-

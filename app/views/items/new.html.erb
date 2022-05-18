@@ -1,16 +1,56 @@
+<br>
 <h1>Add item</h1>
 
 <% if flash[:errors] %>
+<div class="alert alert-danger">
     <% flash[:errors].each do |error| %>
-        <p><%= error %></p>
+        <div><%= error %></div>
     <% end %>
-<% end %>
+    </div>
+<% end %> 
 
-<%= form_for @item do |item| %>
-    <%= item.label :name %>
-    <%= item.text_field :name %>
-    <%= item.label :description %>
-    <%= item.text_field :description %>
+<div class ='row'>
+    <div class = 'col-xs-12'> <!-- Spans all 12 columns of the grid -->
+        <%= form_for @item do |f| %>
+            <div class = "form-group">       <!-- form for name -->
+                <div class = "control-label col-sm-2">
+                    <%= f.label :name %>
+                </div>
+                <div class = "col-sm-8">
+                    <%= f.text_field :name, class: "form-control", placeholder: "Item name", autofocus:true %>
+                </div>
+                <br>
+                <div class = "form-group">      <!-- form for description -->
+                    <div class = "control-label col-sm-2">
+                        <%= f.label :description %>
+                    </div>
+                    <div class = "col-sm-8">
+                        <%= f.text_area :description, rows: 10, class: "form-control", placeholder: "Body of article", autofocus:true%>
+                    </div>
+                </div>
+                <br>
+                <h2>Add Warehouses</h2>
+                <br>
+                <div class = "form-group">     <!-- form for button -->
+                    <div class = "row">
+                        <div class ="col-sm-offset-2 col-sm-8">
+                            <%= f.collection_check_boxes :warehouse_ids, Warehouse.order(:name), :id, :name do |cb| %>
+                                <div class="form-check"><%= cb.label(class: "checkbox-inline input_checkbox") { cb.check_box(class: "checkbox form-check-input") + cb.text} %></div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class = "form-group">     <!-- form for button -->
+                    <div class ="col-sm-offset-5 col-sm-10">
+                        <%= f.submit class: 'btn btn-primary' %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
 
-    <%= item.submit %>
-<% end %>
+<div style="padding-top: 5px;">
+<%= button_to "Cancel", items_path, class: 'btn btn-primary', method: :get %>
+</div>
