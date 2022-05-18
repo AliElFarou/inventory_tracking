@@ -1,38 +1,29 @@
-require "test_helper"
+require "./test/test_helper"
 
 class WarehousesControllerTest < ActionDispatch::IntegrationTest
+
+  def setup
+    @warehouse = Warehouse.create(name: "Amazon", location: "Ottawa")
+  end
+
   test "should get index" do
-    get warehouses_index_url
+    get warehouses_path
     assert_response :success
   end
 
   test "should get new" do
-    get warehouses_new_url
-    assert_response :success
-  end
-
-  test "should get create" do
-    get warehouses_create_url
+    get new_warehouse_path
     assert_response :success
   end
 
   test "should get show" do
-    get warehouses_show_url
+    get warehouse_path(@warehouse)
     assert_response :success
   end
 
   test "should get edit" do
-    get warehouses_edit_url
+    get edit_warehouse_path(@warehouse)
     assert_response :success
   end
 
-  test "should get update" do
-    get warehouses_update_url
-    assert_response :success
-  end
-
-  test "should get destroy" do
-    get warehouses_destroy_url
-    assert_response :success
-  end
 end
