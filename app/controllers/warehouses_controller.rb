@@ -10,7 +10,7 @@ class WarehousesController < ApplicationController
   def create
     @warehouse = Warehouse.create(warehouse_params)
     if @warehouse.valid?
-      redirect_to warehouses_path, notice: "Warehouse created"
+      redirect_to warehouse_path(@warehouse), notice: "Warehouse created"
     else
       flash[:errors] = @warehouse.errors.full_messages
       redirect_to new_warehouse_path
