@@ -16,16 +16,6 @@ class WarehousesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create warehouse" do
-    assert_difference("Warehouse.count") do
-      post warehouses_url, params: { warehouse: { name: "Walmart", location: "Toronto" } }
-    end
-  
-    assert_redirected_to warehouse_path(Warehouse.last)
-    assert_equal "Walmart", Warehouse.last.name
-    assert_equal "Toronto", Warehouse.last.location
-  end
-
   test "should get show" do
     get warehouse_path(@warehouse.id)
     assert_response :success
@@ -34,6 +24,18 @@ class WarehousesControllerTest < ActionDispatch::IntegrationTest
   test "should get edit" do
     get edit_warehouse_path(@warehouse.id)
     assert_response :success
+  end
+
+  #FUNCTIONAL TESTS
+
+  test "should create warehouse" do
+    assert_difference("Warehouse.count") do
+      post warehouses_url, params: { warehouse: { name: "Walmart", location: "Toronto" } }
+    end
+  
+    assert_redirected_to warehouse_path(Warehouse.last)
+    assert_equal "Walmart", Warehouse.last.name
+    assert_equal "Toronto", Warehouse.last.location
   end
 
   test "should update warehouse" do

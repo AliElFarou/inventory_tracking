@@ -9,7 +9,7 @@
             <th>Location</th>
         </thead>
         <tbody>
-            <% @warehouses.each do |warehouse| %>
+            <% @warehouses.order(:name).each do |warehouse| %>
             <tr>
             <td><%= link_to warehouse.name, warehouse_path(warehouse) %></td>
             <td><%= warehouse.location %>

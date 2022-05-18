@@ -3,6 +3,5 @@ class Warehouse < ApplicationRecord
     has_many :items, through: :warehouse_items
 
     validates :name, presence:  true
-    validates :location, presence: true
-    validates :location, uniqueness: true
+    validates :location, presence: true, uniqueness: true
 end

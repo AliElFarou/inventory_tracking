@@ -5,14 +5,24 @@
 <div>
     <table class="table table-bordered table-sm" >
         <thead>
-            <th>Name</th>
             <th>Item</th>
+            <th>Description</th>
+            <th>Warehouses</td>
         </thead>
         <tbody>
-            <% @items.each do |item| %>
+            <% @items.order(:name).each do |item| %>
             <tr>
-            <td><%= link_to item.name, item_path(item) %></td>
-            <td><%= item.description %>
+                <td><%= link_to item.name, item_path(item) %></td>
+                <td><%= item.description %></td>
+                <td>
+                    <% if item.warehouses.count == 0 %>
+                        <p>This item is currently sold out</p>
+                    <% else %>
+                        <% item.warehouses.each do |warehouse| %>
+                            <li><%= warehouse.name %>, <%= warehouse.location %></li>
+                        <% end %>
+                    <% end %>
+                </td>
             </tr>
             <% end %>
         </tbody>

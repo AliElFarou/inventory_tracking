@@ -1,4 +1,7 @@
 class WarehousesController < ApplicationController
+
+  before_action :set_warehouse, only: [:show, :edit, :update, :destroy]
+
   def index
     @warehouses = Warehouse.all
   end
@@ -18,16 +21,14 @@ class WarehousesController < ApplicationController
   end
 
   def show
-    @warehouse = Warehouse.find(params[:id])
+    #
   end
 
   def edit
-    @warehouse = Warehouse.find(params[:id])
+    #
   end
 
   def update
-    @warehouse = Warehouse.find(params[:id])
-
     if @warehouse.update(warehouse_params)
       redirect_to warehouse_path(@warehouse), notice: "Warehouse Updated"
     else
@@ -37,7 +38,6 @@ class WarehousesController < ApplicationController
   end
 
   def destroy
-    @warehouse = Warehouse.find(params[:id])
     @warehouse.destroy
     redirect_to warehouses_path, alert: "Warehouse has been deleted"
   end
@@ -46,5 +46,9 @@ class WarehousesController < ApplicationController
 
   def warehouse_params
     params.require(:warehouse).permit(:name, :location, item_ids: [])
+  end
+
+  def set_warehouse
+    @warehouse = Warehouse.find(params[:id])
   end
 end

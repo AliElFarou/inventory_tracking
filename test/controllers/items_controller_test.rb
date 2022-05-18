@@ -16,16 +16,6 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create item" do
-    assert_difference("Item.count") do
-      post items_url, params: { item: { name: "Laser", description: "Shines Bright" } }
-    end
-  
-    assert_redirected_to item_path(Item.last)
-    assert_equal "Laser", Item.last.name
-    assert_equal "Shines Bright", Item.last.description
-  end
-
   test "should get show" do
     get item_path(@item.id)
     assert_response :success
@@ -34,6 +24,18 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
   test "should get edit" do
     get edit_item_path(@item.id)
     assert_response :success
+  end
+
+  # FUNCTIONAL TESTS
+
+  test "should create item" do
+    assert_difference("Item.count") do
+      post items_url, params: { item: { name: "Laser", description: "Shines Bright" } }
+    end
+  
+    assert_redirected_to item_path(Item.last)
+    assert_equal "Laser", Item.last.name
+    assert_equal "Shines Bright", Item.last.description
   end
 
   test "should update item" do
