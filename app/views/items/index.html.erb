@@ -3,6 +3,9 @@
 <br>
 
 <div>
+<% if @items.count == 0 %>
+        <p>Click "Add new item" to create a new item.</p>
+    <% else %>
     <table class="table table-bordered table-sm" >
         <thead>
             <th>Item</th>
@@ -27,6 +30,7 @@
             <% end %>
         </tbody>
     </table>
+    <% end %>
 </div>
 
 <div style="display: flex;">

@@ -3,20 +3,24 @@
 <br>
 
 <div>
-    <table class="table table-bordered table-sm">
-        <thead>
-            <th>Name</th>
-            <th>Location</th>
-        </thead>
-        <tbody>
-            <% @warehouses.order(:name).each do |warehouse| %>
-            <tr>
-            <td><%= link_to warehouse.name, warehouse_path(warehouse) %></td>
-            <td><%= warehouse.location %>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
+    <% if @warehouses.count == 0 %>
+        <p>Click "Add warehouse" to create a new warehouse.</p>
+    <% else %>
+        <table class="table table-bordered table-sm">
+            <thead>
+                <th>Name</th>
+                <th>Location</th>
+            </thead>
+            <tbody>
+                <% @warehouses.order(:name).each do |warehouse| %>
+                <tr>
+                <td><%= link_to warehouse.name, warehouse_path(warehouse) %></td>
+                <td><%= warehouse.location %>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    <% end %>
 </div>
 
 <div style="display: flex;">

@@ -31,6 +31,9 @@
             </div>
             <br>
             <h2>Item inventory</h2>
+            <% if Item.all.count == 0 %>
+                    <p>There are no items available. Create a new item in the items page.</p>
+                <% else %>
             <br>
             <div class = "form-group">     <!-- form for button -->
                 <div class = "row">
@@ -41,6 +44,7 @@
                     </div>
                 </div>
             </div>
+            <% end %>
             <br>
             <div class = "form-group">     <!-- form for button -->
                 <div class ="col-sm-offset-5 col-sm-10">

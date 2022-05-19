@@ -30,6 +30,9 @@
                 </div>
                 <br>
                 <h2>Add Warehouses</h2>
+                <% if Warehouse.all.count == 0 %>
+                    <p>There are no warehouses available. Create a new warehouse in the warehouses page.</p>
+                <% else %>
                 <br>
                 <div class = "form-group">     <!-- form for button -->
                     <div class = "row">
@@ -40,6 +43,7 @@
                         </div>
                     </div>
                 </div>
+                <% end %>
                 <br>
                 <div class = "form-group">     <!-- form for button -->
                     <div class ="col-sm-offset-5 col-sm-10">
