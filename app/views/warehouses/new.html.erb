@@ -10,7 +10,7 @@
 <% end %>
 
 <div class ='row'>
-    <div class = 'col-xs-12'> <!-- Spans all 12 columns of the grid -->
+    <div class = 'col-xs-12'> 
         <%= form_for @warehouse do |f| %>
         <div class = "form-group">       <!-- form for name -->
             <div class = "control-label col-sm-2">
@@ -34,7 +34,7 @@
                     <p>There are no items available. Create a new item in the items page.</p>
                 <% else %>
             <br>
-            <div class = "form-group">     <!-- form for button -->
+            <div class = "form-group">     <!-- Collection of Items in a checkbox list -->
                 <div class = "row">
                     <div class ="col-sm-offset-2 col-sm-8">
                         <%= f.collection_check_boxes :item_ids, Item.order(:name), :id, :name do |cb| %>
@@ -45,7 +45,7 @@
             </div>
             <% end %>
             <br>
-            <div class = "form-group">     <!-- form for button -->
+            <div class = "form-group">     <!-- Submit button -->
                 <div class ="col-sm-offset-5 col-sm-10">
                     <%= f.submit class: 'btn btn-primary' %>
                 </div>
